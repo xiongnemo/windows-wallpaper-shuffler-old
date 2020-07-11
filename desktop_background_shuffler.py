@@ -93,7 +93,7 @@ def main(argv):
         exit(1)
 
     image_base_directory = ""
-    print(argv)
+    
     try:
         opts, args = getopt.getopt(
             argv, "h:p:", ["help", "PATH="])
