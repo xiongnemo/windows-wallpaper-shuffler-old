@@ -8,6 +8,9 @@ import time
 
 legal_image_suffix = ['png', 'jpg', 'jpeg', 'bmp']
 
+
+# why i comment those lines
+# there's no such kind of image in my image sets.
 folder_name_for_config = {
     # "dawn": "dawn",
     # "morning": "morning",
@@ -44,7 +47,8 @@ def check_base_folder_availability(path: str) -> bool:
                 vaild_image_count += 1
                 continue
         if vaild_image_count == 0:
-            print("No vaild image in subfolder " + '"' + temp_folder_name + '". If you believe this is an error, please update "legal_image_suffix" in script.')
+            print("No vaild image in subfolder " + '"' + temp_folder_name +
+                  '". If you believe this is an error, please update "legal_image_suffix" in script.')
             return False
     return True
 
@@ -93,7 +97,7 @@ def main(argv):
         exit(1)
 
     image_base_directory = ""
-    
+
     try:
         opts, args = getopt.getopt(
             argv, "h:p:", ["help", "PATH="])
@@ -119,12 +123,13 @@ def main(argv):
 
     folder_list = os.listdir(image_base_directory)
     while True:
-        year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+        year, month, day, hour, min = map(
+            int, time.strftime("%Y %m %d %H %M").split())
         current_hour = hour
         current_min = min
         if current_hour < 6:
             use_image_in_folder_to_set_background(
-                image_base_directory + "/" +  folder_name_for_config["night"])
+                image_base_directory + "/" + folder_name_for_config["night"])
         elif current_hour < 11 and current_min < 20:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["forenoon"])
