@@ -23,8 +23,8 @@ folder_name_for_config = {
 
 
 def show_help():
-    print('Usage: desktop_background_shuffler.py -p <base_directory>')
-    print('   or: desktop_background_shuffler.py --PATH=<base_directory>')
+    print('Usage: desktop_background_shuffler.py -p <base_directory> -t <slideshow time>')
+    print('   or: desktop_background_shuffler.py --PATH=<base_directory> --TIME=<slideshow time>')
 
 
 def check_base_folder_availability(path: str) -> bool:
@@ -97,10 +97,11 @@ def main(argv):
         exit(1)
 
     image_base_directory = ""
+    slideshow_time = 60
 
     try:
         opts, args = getopt.getopt(
-            argv, "h:p:", ["help", "PATH="])
+            argv, "h:p:t:v:", ["help", "PATH=", "TIME="])
     except getopt.GetoptError:
         print("getopt failed to get options.")
         show_help()
@@ -112,6 +113,8 @@ def main(argv):
             sys.exit(0)
         elif opt in ("-p", "--PATH"):
             image_base_directory = arg
+        elif opt in ("-t", "--TIME"):
+            slideshow_time = int(arg)
     if image_base_directory == "":
         print("Missing options.")
         show_help()
@@ -123,26 +126,27 @@ def main(argv):
 
     folder_list = os.listdir(image_base_directory)
     while True:
-        year, month, day, hour, min = map(
+        year, month, day, hour, minute = map(
             int, time.strftime("%Y %m %d %H %M").split())
         current_hour = hour
-        current_min = min
-        if current_hour < 6:
+        current_min = minute
+        current_time = 100 * hour + minute
+        if current_time < 600:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["night"])
-        elif current_hour < 11 and current_min < 20:
+        elif current_time < 1120:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["forenoon"])
-        elif current_hour < 13 and current_min < 30:
+        elif current_time < 1330:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["afternoon"])
-        elif current_hour < 19 and current_min < 30:
+        elif current_time < 1930:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["dusk"])
         else:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["night"])
-        time.sleep(60)
+        time.sleep(slideshow_time)
 
 
 if __name__ == "__main__":
