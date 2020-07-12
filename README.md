@@ -1,5 +1,7 @@
 # windows-wallpaper-shuffler
 
+[![CodeFactor](https://www.codefactor.io/repository/github/xiongnemo/windows-wallpaper-shuffler/badge)](https://www.codefactor.io/repository/github/xiongnemo/windows-wallpaper-shuffler)
+
 Wallpaper shuffler for Windows, implemented in Python.
 
 ## Feature
