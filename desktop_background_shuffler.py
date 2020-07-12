@@ -131,6 +131,7 @@ def main(argv):
         current_hour = hour
         current_min = minute
         current_time = 100 * hour + minute
+        print("Time: " + str(current_time))
         if current_time < 600:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["night"])
@@ -138,6 +139,9 @@ def main(argv):
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["forenoon"])
         elif current_time < 1330:
+            use_image_in_folder_to_set_background(
+                image_base_directory + "/" + folder_name_for_config["noon"])
+        elif current_time < 1700:
             use_image_in_folder_to_set_background(
                 image_base_directory + "/" + folder_name_for_config["afternoon"])
         elif current_time < 1930:
