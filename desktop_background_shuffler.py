@@ -73,7 +73,6 @@ def change_desktop_background_with_image(image_path: str):
     SPIF_SENDWININICHANGE = 0x0002
     ctypes.windll.user32.SystemParametersInfoW(
         SPI_SETDESKWALLPAPER, 0, image_path, SPIF_SENDWININICHANGE)
-    return
 
 
 def use_image_in_folder_to_set_background(folder_path: str):
