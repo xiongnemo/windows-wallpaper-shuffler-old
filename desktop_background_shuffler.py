@@ -79,10 +79,12 @@ def use_image_in_folder_to_set_background(folder_path: str):
     file_list = os.listdir(os.path.normpath(folder_path))
     while True:
         image_name = random.choice(file_list)
+        print("found file: " + image_name)
         image_name_splited = image_name.split(".")
         suffix = image_name_splited[-1].lower()
         if suffix in legal_image_suffix and len(image_name_splited) >= 2:
             image_file_relative_path = image_name
+            print("found valid image: " + image_name)
             break
     image_path = os.path.normpath(
         folder_path + "/" + image_file_relative_path)
