@@ -148,8 +148,7 @@ def get_image_path_with_current_time_and_image_base_directory(image_base_directo
     if current_time < 1930:
         return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["dusk"])
-    else:
-        return find_available_image_within_path(
+    return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["night"])
 
 
