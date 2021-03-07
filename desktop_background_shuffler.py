@@ -2,8 +2,8 @@ import os
 import sys
 import platform
 import ctypes
-from ctypes import *
 import getopt
+from ctypes import windll, cdll
 import random
 import time
 import json
@@ -22,8 +22,6 @@ folder_name_for_config = {
     "dusk": "dusk",
     "night": "night",
 }
-
-()
 
 # https://code.activestate.com/recipes/460509/
 
@@ -138,16 +136,16 @@ def get_image_path_with_current_time_and_image_base_directory(image_base_directo
     if current_time < 600:
         return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["night"])
-    elif current_time < 1120:
+    if current_time < 1120:
         return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["forenoon"])
-    elif current_time < 1330:
+    if current_time < 1330:
         return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["noon"])
-    elif current_time < 1700:
+    if current_time < 1700:
         return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["afternoon"])
-    elif current_time < 1930:
+    if current_time < 1930:
         return find_available_image_within_path(
             image_base_directory + "/" + folder_name_for_config["dusk"])
     else:
